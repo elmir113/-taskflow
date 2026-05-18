@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>TaskFlow — Project Report</title>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;800&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --bg: #0d0d0f; --surface: #16161a; --border: #2a2a35;
+      --accent: #c8ff57; --accent2: #57c8ff;
+      --text: #f0f0f0; --muted: #6b6b7a;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: var(--bg); color: var(--text);
+      font-family: 'DM Mono', monospace;
+      line-height: 1.7; padding: 48px 16px 100px;
+    }
+    body::before {
+      content: '';
+      position: fixed; inset: 0; pointer-events: none;
+      background: radial-gradient(ellipse 60% 40% at 80% 10%, rgba(200,255,87,0.06) 0%, transparent 70%);
+    }
+    .container { max-width: 720px; margin: 0 auto; }
+
+    .chip {
+      display: inline-block;
+      background: rgba(200,255,87,0.1); border: 1px solid rgba(200,255,87,0.3);
+      color: var(--accent); font-size: 11px; letter-spacing: 0.15em;
+      text-transform: uppercase; padding: 4px 12px; border-radius: 999px;
+      margin-bottom: 16px;
+    }
+    h1 {
+      font-family: 'Syne', sans-serif; font-size: clamp(2.2rem, 8vw, 3.5rem);
+      font-weight: 800; line-height: 1.05; margin-bottom: 16px;
+    }
+    h1 span { color: var(--accent); }
+    .hero-sub { color: var(--muted); font-size: 14px; margin-bottom: 48px; }
+
+    .demo-link {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: var(--accent); color: #0d0d0f;
+      font-family: 'Syne', sans-serif; font-weight: 700; font-size: 14px;
+      padding: 12px 24px; border-radius: 10px; text-decoration: none;
+      margin-bottom: 60px; transition: box-shadow 0.2s, transform 0.15s;
+    }
+    .demo-link:hover { box-shadow: 0 4px 24px rgba(200,255,87,0.3); transform: translateY(-1px); }
+
+    section { margin-bottom: 56px; }
+    h2 {
+      font-family: 'Syne', sans-serif; font-size: 1.4rem; font-weight: 700;
+      margin-bottom: 20px; padding-bottom: 10px;
+      border-bottom: 1px solid var(--border);
+      display: flex; align-items: center; gap: 10px;
+    }
+    h2 .num {
+      background: rgba(200,255,87,0.1); color: var(--accent);
+      font-size: 12px; padding: 2px 10px; border-radius: 999px;
+    }
+
+    p { font-size: 14px; color: #c0c0cc; margin-bottom: 14px; }
+    ul { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+    ul li {
+      font-size: 14px; color: #c0c0cc;
+      padding-left: 20px; position: relative;
+    }
+    ul li::before { content: '▸'; position: absolute; left: 0; color: var(--accent); }
+
+    .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    @media (max-width: 500px) { .grid { grid-template-columns: 1fr; } }
+
+    .card {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 12px; padding: 20px;
+    }
+    .card-title { font-family: 'Syne', sans-serif; font-size: 13px; font-weight: 700; margin-bottom: 6px; }
+    .card-body { font-size: 13px; color: var(--muted); }
+
+    .code-block {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 12px; padding: 20px; font-size: 13px;
+      color: var(--accent2); overflow-x: auto; line-height: 1.6;
+      margin-bottom: 14px;
+    }
+
+    .grade-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+    .grade-table th, .grade-table td {
+      padding: 10px 14px; text-align: left;
+      border-bottom: 1px solid var(--border);
+    }
+    .grade-table th { color: var(--accent); font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; }
+    .grade-table td:last-child { color: var(--accent); font-weight: 600; }
+
+    footer { margin-top: 80px; padding-top: 24px; border-top: 1px solid var(--border); font-size: 12px; color: var(--muted); }
+  </style>
+</head>
+<body>
+<div class="container">
+
+  <div class="chip">// Course Project 1 — 2025</div>
+  <h1>Task<span>Flow</span><br>Project Report</h1>
+  <p class="hero-sub">A lightweight, browser-based task management application.<br>Built with HTML5, CSS3, and Vanilla JavaScript.</p>
+
+  <a class="demo-link" href="index.html">▶ Launch Live Demo →</a>
+
+  <!-- 1. Abstract -->
+  <section>
+    <h2><span class="num">01</span> Abstract</h2>
+    <p>TaskFlow is a client-side web application that allows users to create, prioritize, filter, and manage personal tasks. The application requires no server, no framework, and no external dependencies beyond a web browser. All task data is persisted in the browser's localStorage API, ensuring information survives page reloads.</p>
+    <p>The project demonstrates core web development concepts including DOM manipulation, event-driven programming, data persistence, and responsive UI design.</p>
+  </section>
+
+  <!-- 2. Research Question -->
+  <section>
+    <h2><span class="num">02</span> Research Question &amp; Objectives</h2>
+    <p><strong>Research question:</strong> How can a fully functional task management interface be implemented using only native browser technologies, without relying on external frameworks or backend services?</p>
+    <ul>
+      <li>Design a clean, usable interface for task creation and management</li>
+      <li>Implement task prioritization (High / Medium / Low)</li>
+      <li>Enable filtering tasks by status and priority</li>
+      <li>Persist tasks across browser sessions using localStorage</li>
+      <li>Ensure the application works offline in any modern browser</li>
+    </ul>
+  </section>
+
+  <!-- 3. Technologies -->
+  <section>
+    <h2><span class="num">03</span> Technologies Used</h2>
+    <div class="grid">
+      <div class="card"><div class="card-title">HTML5</div><div class="card-body">Semantic structure, accessibility-friendly markup</div></div>
+      <div class="card"><div class="card-title">CSS3</div><div class="card-body">Variables, animations, flexbox/grid layout, responsive design</div></div>
+      <div class="card"><div class="card-title">JavaScript (ES6+)</div><div class="card-body">DOM manipulation, event handling, array methods</div></div>
+      <div class="card"><div class="card-title">localStorage API</div><div class="card-body">Client-side data persistence across sessions</div></div>
+    </div>
+  </section>
+
+  <!-- 4. Features -->
+  <section>
+    <h2><span class="num">04</span> Key Features</h2>
+    <ul>
+      <li>Add tasks with a text input and Enter key or button click</li>
+      <li>Assign priority level: High, Medium, or Low</li>
+      <li>Toggle tasks as complete / incomplete</li>
+      <li>Delete individual tasks or clear all completed at once</li>
+      <li>Filter view: All, Active, Done, High, Medium, Low</li>
+      <li>Live statistics: total, active, and done task counts</li>
+      <li>Data persisted in localStorage — survives page refresh</li>
+      <li>Fully responsive — works on mobile and desktop</li>
+    </ul>
+  </section>
+
+  <!-- 5. Code Sample -->
+  <section>
+    <h2><span class="num">05</span> Code Sample</h2>
+    <p>Core addTask function — demonstrates input validation, data modeling, and state management:</p>
+    <div class="code-block">
+function addTask() {<br>
+&nbsp;&nbsp;const input = document.getElementById('taskInput');<br>
+&nbsp;&nbsp;const priority = document.getElementById('prioritySelect').value;<br>
+&nbsp;&nbsp;const text = input.value.trim();<br>
+&nbsp;&nbsp;if (!text) { input.focus(); return; }<br>
+<br>
+&nbsp;&nbsp;tasks.unshift({<br>
+&nbsp;&nbsp;&nbsp;&nbsp;id: Date.now(),<br>
+&nbsp;&nbsp;&nbsp;&nbsp;text,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;priority,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;done: false<br>
+&nbsp;&nbsp;});<br>
+&nbsp;&nbsp;input.value = '';<br>
+&nbsp;&nbsp;save();<br>
+&nbsp;&nbsp;render();<br>
+}
+    </div>
+    <p>Data is saved to localStorage after every mutation, and the render() function rebuilds the task list from state on each update.</p>
+  </section>
+
+  <!-- 6. Grading -->
+  <section>
+    <h2><span class="num">06</span> Assessment Alignment</h2>
+    <table class="grade-table">
+      <thead><tr><th>Component</th><th>Weight</th></tr></thead>
+      <tbody>
+        <tr><td>Topic Selection &amp; Research Question</td><td>10%</td></tr>
+        <tr><td>Literature Review</td><td>25%</td></tr>
+        <tr><td>Academic Essay Draft</td><td>40%</td></tr>
+        <tr><td>Final Essay Submission</td><td>20%</td></tr>
+        <tr><td>Short Presentation</td><td>5%</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- 7. Conclusions -->
+  <section>
+    <h2><span class="num">07</span> Conclusions</h2>
+    <p>TaskFlow demonstrates that a fully functional, persistent, and visually polished web application can be built using only the core browser platform. No build tools, no npm packages, no backend — just three files and a browser.</p>
+    <p>The project also illustrates the Model-View pattern at a micro scale: application state is stored in a JavaScript array, persisted via localStorage, and the UI is always a pure function of that state via the render() function.</p>
+    <p>Future improvements could include: drag-and-drop reordering, due dates with reminders, dark/light theme toggle, and export to JSON or CSV.</p>
+  </section>
+
+  <!-- 8. References -->
+  <section>
+    <h2><span class="num">08</span> References</h2>
+    <ul>
+      <li>MDN Web Docs. (2024). <em>localStorage</em>. Mozilla. Available: https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage [Accessed 20 May 2025].</li>
+      <li>MDN Web Docs. (2024). <em>Document Object Model (DOM)</em>. Mozilla. Available: https://developer.mozilla.org/en-US/docs/Web/API/Document_Object_Model [Accessed 20 May 2025].</li>
+      <li>Crockford, D. (2008). <em>JavaScript: The Good Parts</em>. O'Reilly Media.</li>
+      <li>Duckett, J. (2014). <em>HTML &amp; CSS: Design and Build Websites</em>. Wiley.</li>
+    </ul>
+  </section>
+
+  <footer>
+    TaskFlow — Course Project 1 &nbsp;·&nbsp; ISMA University of Applied Sciences &nbsp;·&nbsp; 2025
+  </footer>
+</div>
+</body>
+</html>
